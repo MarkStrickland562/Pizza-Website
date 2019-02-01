@@ -23,7 +23,7 @@
           <input id="lastName" type="text">
         </div>
         <div class="col-md-4">
-          <label for="phoneNumber">Phone Number:</label>
+          <label for="phoneNumber">Phone:</label>
           <input id="phoneNumber" type="text">
         </div>
       </div>
@@ -42,32 +42,63 @@
             </form>
         </div>
         <div class="col-md-4">
-          <form id="pizzaSize">
+          <form id="Size">
             <div class="form-group">
-              <p>Please select the size for your pizza:</p>
-              <input type="checkbox" name="pizza-size" value="Small"> Small (8")<br>
-              <input type="checkbox" name="pizza-size" value="Medium"> Medium (12")<br>
-              <input type="checkbox" name="pizza-size" value="Large"> Large (16")<br>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="pizzaSize" value="s">
+                  Small (8")
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="pizzaSize" value="m">
+                  Medium (12")
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="pizzaSize" value="l">
+                  Large (16")
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="pizzaSize" value="x">
+                  X-Large (20")
+                </label>
+              </div>
             </div>
           </form>
         </div>
+        <div class="col-md-2">
+          <div id="buttonAddPizza" class="button-centered">
+            <p><br><br></>
+            <button type="button" id="addPizza" class="btn-primary">Add Pizza</button>
+          </div>
+        </div>
       </div>
       <div class="row row-attributes">
-          <div class="col-md-12">
+          <h4><strong>Delivery? (Optional)</strong></h4>
+          <div class="col-md-6">
             <label for="deliveryAddress">Delivery Address:</label>
             <input id="deliveryAddress" type="text">
+          </div>
+          <div class="col-md-6">
             <label for="deliveryDateTime">Delivery Date/Time:</label>
             <input id="deliveryDateTime" type="text">
           </div>
       </div>
-      <div class="row row-attributes">
-         <button type="submit">Add Order</button>
+      <div class="row button-row">
+        <form id="submitOrder">
+          <button type="submit" class="btn-submit">Add Order</button>
+        </form>
       </div>
-      <div class="row row-attributes">
-        <p>My Order:</p>
+      <div id="myOrder" class="row row-attributes">
+        <p>My Order: <span id="orderDetails"></span></p>
       </div>
-      <div class="row row-attributes">
-         <button type="buttons">Start Over</button>
+      <div id="buttonStartOver" class="row button-row">
+         <button type="button" id="startOver" class="btn-primary">Start Over</button>
       </div>
     </div>
   </body>

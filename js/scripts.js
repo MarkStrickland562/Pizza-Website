@@ -1,17 +1,21 @@
 // Business Logic for Order
-function Order(firstName, lastName, phoneNumber, deliveryAddress, deliveryTime) {
-  this.pizzas = [],
-  this.currentId = 0
+function Order(firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, pizzas) {
+  this.orderId = 0
 }
 
 Order.prototype.assignId = function() {
-  this.currentId += 1;
-  return this.currentId;
+  this.orderId += 1;
+  return this.OrderId;
 }
 
-Order.prototype.addPizza = function(pizza) {
-  pizza.id = this.assignId();
-  this.pizzas.push(pizza);
+Order.prototype.addOrder = function(firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, pizzas) {
+  orderId = this.assignId();
+  firstName = firstName;
+  lastName = lastName;
+  phoneNumber = phoneNumber;
+  deliveryAddress = deliveryAddress;
+  deliveryDateTime = deliveryDateTime;
+  this.pizzas.push(pizzas);
 }
 
 Order.prototype.findPizza = function(id) {
@@ -37,7 +41,23 @@ Order.prototype.deletePizza = function(id) {
   return false;
 }
 
-// Business Logic for Pizzas
+// Business Logic for Multiple pizzas
+function Pizzas () {
+  this.pizzas = [];
+  this.pizzaId = 0;
+}
+
+Pizzas.prototype.assignId = function() {
+  this.pizzaId += 1;
+  return this.pizzaId;
+}
+
+Pizzas.prototype.addPizza = function(pizza) {
+  pizzaId = this.assignId();
+  this.pizzas.push(pizza);
+}
+
+// Business Logic for a Pizza
 
 function Pizza(size, toppings) {
   this.size = size,
@@ -45,44 +65,103 @@ function Pizza(size, toppings) {
 }
 
 // User Interface Logic ---------
-var pizzaNumber = 1;
 
-var order = new Order();
-var pizza = new Pizza();
+function validateInput(firstName, lastName, phoneNumber, pizzaToppings, pizzaSize) {
+console.log(firstName);
 
-
-function displayOrderDetails(addressBookToDisplay) {
-  var contactsList = $("ul#contacts");
-  var htmlForContactInfo = "";
-  addressBookToDisplay.contacts.forEach(function(contact) {
-    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-  });
-  contactsList.html(htmlForContactInfo);
-};
-
-function showContact(contactId) {
-  var contact = addressBook.findContact(contactId);
-  $("#show-contact").show();
-  $(".first-name").html(contact.firstName);
-  $(".last-name").html(contact.lastName);
-  $(".phone-number").html(contact.phoneNumber);
-  var buttons = $("#buttons");
-  buttons.empty();
-  buttons.append("<button class='deleteButton' id=" +  + contact.id + ">Delete</button>");
+  if (!firstName) {
+    alert("First Name is Missing!");
+    return false;
+  }
+  else if (!lastName) {
+    alert("Last Name is Missing!");
+    return false;
+  }
+  else if (!phoneNumber) {
+    alert("Phone Number is Missing!");
+    return false;
+  }
+  else if (!pizzaToppings) {
+    alert("No Pizza Toppings were Selected!");
+    return false;
+  }
+  else if (!pizzaSize) {
+    alert("No Pizza Size was Selected!");
+    return false;
+  }
+  return true;
 }
 
-function attachContactListeners() {
+function addToppings() {
+  var pizzaToppings = [];
+
+  $("input:checkbox[name=pizza-topping]:checked").each(function(){
+     pizzaToppings.push($(this).val());
+   });
+
+  return pizzaToppings;
+}
+
+function addSize() {
+  return $("input:radio[name=pizzaSize]:checked").val();
+}
+
+function addPizza() {
+  var pizzaToppings = addToppings();
+  var pizzaSize = addSize();
+
+//  if (validateInput(firstName, lastName, phoneNumber, pizzaToppings, pizzaSize)) {
+
+  var newPizza = new Pizza(pizzaSize, pizzaToppings);
+  newPizzas.addPizza(newPizza);
+    pizzaNumber = pizzaNumber + 1;
+    $("#pizzaNumber").text(pizzaNumber.toString());
+
+//    newOrder.addPizza(newPizza);
+//  }
+//  else {
+//
+//  }
+}
+
+function attachOrderListeners() {
+  $("#buttonAddPizza").on("click", "#addPizza", function(){
+    addPizza();
+   });
+
+   $("#buttonStartOver").on("click", "#startOver", function(){
+       location.reload();
+   });
 
 };
 
+var pizzaNumber = 1;
+var newPizzas = new Pizzas();
+var newOrder = new Order();
+
 $(document).ready(function() {
-  attachContactListeners();
+  attachOrderListeners();
 
   $("#pizzaNumber").text(pizzaNumber.toString());
 
-  $("form#submit").submit(function(event) {
+  $("form#submitOrder").submit(function(event) {
     event.preventDefault();
 
-    firstName = $("inputfirstName").val();
+    firstName = $("#inputfirstName").val();
+    lastName = $("#inputlastName").val();
+    phoneNumber = $("#inputphoneNumber").val();
+    deliveryAddress = $("inputdeliveryAddress").val();
+    deliveryDateTime = $("inputdeliveryDateTime").val();
+
+    var newOrder = new Order();
+
+    newOrder.addOrder(firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, newPizzas);
+console.log(newPizzas);
+console.log(newOrder);
+
+  $("#orderDetails").text(newOrder);
+  $("#myOrder").show();
+
   });
-})
+
+});
