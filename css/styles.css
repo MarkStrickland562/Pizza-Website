@@ -7,6 +7,10 @@
   color: black;
 }
 
+.bg-div {
+  background-color: yellow;
+}
+
 .row-attributes {
   border: 2px solid;
   padding: 4px;

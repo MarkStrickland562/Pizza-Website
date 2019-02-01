@@ -1,5 +1,6 @@
 // Business Logic for Order
-function Order(firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, pizzas) {
+function Order(order) {
+  this.order = [],
   this.orderId = 0
 }
 
@@ -8,37 +9,9 @@ Order.prototype.assignId = function() {
   return this.OrderId;
 }
 
-Order.prototype.addOrder = function(firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, pizzas) {
+Order.prototype.addOrder = function(order) {
   orderId = this.assignId();
-  firstName = firstName;
-  lastName = lastName;
-  phoneNumber = phoneNumber;
-  deliveryAddress = deliveryAddress;
-  deliveryDateTime = deliveryDateTime;
-  this.pizzas.push(pizzas);
-}
-
-Order.prototype.findPizza = function(id) {
-  for (var i=0; i< this.pizzas.length; i++) {
-    if (this.pizzas[i]) {
-      if (this.pizzas[i].id == id) {
-        return this.pizzas[i];
-      }
-    }
-  };
-  return false;
-}
-
-Order.prototype.deletePizza = function(id) {
-  for (var i=0; i< this.pizzas.length; i++) {
-    if (this.pizzas[i]) {
-      if (this.pizzas[i].id == id) {
-        delete this.pizzas[i];
-        return true;
-      }
-    }
-  };
-  return false;
+  this.order.push(order);
 }
 
 // Business Logic for Multiple pizzas
@@ -97,31 +70,28 @@ function addToppings() {
 
   $("input:checkbox[name=pizza-topping]:checked").each(function(){
      pizzaToppings.push($(this).val());
+     $("input:checkbox[name=pizza-topping]").prop('checked',false);
    });
 
   return pizzaToppings;
 }
 
 function addSize() {
-  return $("input:radio[name=pizzaSize]:checked").val();
+  var pizzaSize = $("input:radio[name=pizzaSize]:checked").val();
+
+  $("input:radio[name=pizzaSize]").prop('checked',false);
+
+  return pizzaSize;
 }
 
 function addPizza() {
   var pizzaToppings = addToppings();
   var pizzaSize = addSize();
-
-//  if (validateInput(firstName, lastName, phoneNumber, pizzaToppings, pizzaSize)) {
-
   var newPizza = new Pizza(pizzaSize, pizzaToppings);
   newPizzas.addPizza(newPizza);
-    pizzaNumber = pizzaNumber + 1;
-    $("#pizzaNumber").text(pizzaNumber.toString());
+  pizzaNumber = pizzaNumber + 1;
+  $("#pizzaNumber").text(pizzaNumber.toString());
 
-//    newOrder.addPizza(newPizza);
-//  }
-//  else {
-//
-//  }
 }
 
 function attachOrderListeners() {
@@ -137,7 +107,6 @@ function attachOrderListeners() {
 
 var pizzaNumber = 1;
 var newPizzas = new Pizzas();
-var newOrder = new Order();
 
 $(document).ready(function() {
   attachOrderListeners();
@@ -147,19 +116,20 @@ $(document).ready(function() {
   $("form#submitOrder").submit(function(event) {
     event.preventDefault();
 
-    firstName = $("#inputfirstName").val();
-    lastName = $("#inputlastName").val();
-    phoneNumber = $("#inputphoneNumber").val();
-    deliveryAddress = $("inputdeliveryAddress").val();
-    deliveryDateTime = $("inputdeliveryDateTime").val();
+    var firstName = $("input#firstName").val();
+    var lastName = $("input#lastName").val();
+    var phoneNumber = $("input#phoneNumber").val();
+    var deliveryAddress = $("input#deliveryAddress").val();
+    var deliveryDateTime = $("input#deliveryDateTime").val();
+
+    var orderDetails = [firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, newPizzas];
 
     var newOrder = new Order();
 
-    newOrder.addOrder(firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, newPizzas);
-console.log(newPizzas);
+    newOrder.addOrder(orderDetails);
 console.log(newOrder);
 
-  $("#orderDetails").text(newOrder);
+  $("#orderDetails").append(newOrder);
   $("#myOrder").show();
 
   });
