@@ -14,7 +14,7 @@ Order.prototype.addOrder = function(order) {
   this.order.push(order);
 }
 
-// Business Logic for Multiple pizzas
+// Business Logic for Multiple Pizzas
 function Pizzas () {
   this.pizzas = [];
   this.pizzaId = 0;
@@ -39,31 +39,31 @@ function Pizza(size, toppings) {
 
 // User Interface Logic ---------
 
-function validateInput(firstName, lastName, phoneNumber, pizzaToppings, pizzaSize) {
-console.log(firstName);
-
-  if (!firstName) {
-    alert("First Name is Missing!");
-    return false;
-  }
-  else if (!lastName) {
-    alert("Last Name is Missing!");
-    return false;
-  }
-  else if (!phoneNumber) {
-    alert("Phone Number is Missing!");
-    return false;
-  }
-  else if (!pizzaToppings) {
-    alert("No Pizza Toppings were Selected!");
-    return false;
-  }
-  else if (!pizzaSize) {
-    alert("No Pizza Size was Selected!");
-    return false;
-  }
-  return true;
-}
+// function validateInput(firstName, lastName, phoneNumber, pizzaToppings, pizzaSize) {
+// console.log(firstName);
+//
+//   if (!firstName) {
+//     alert("First Name is Missing!");
+//     return false;
+//   }
+//   else if (!lastName) {
+//     alert("Last Name is Missing!");
+//     return false;
+//   }
+//   else if (!phoneNumber) {
+//     alert("Phone Number is Missing!");
+//     return false;
+//   }
+//   else if (!pizzaToppings) {
+//     alert("No Pizza Toppings were Selected!");
+//     return false;
+//   }
+//   else if (!pizzaSize) {
+//     alert("No Pizza Size was Selected!");
+//     return false;
+//   }
+//   return true;
+// }
 
 function addToppings() {
   var pizzaToppings = [];
@@ -94,6 +94,16 @@ function addPizza() {
 
 }
 
+function calculateTotal() {
+  var subTotal = pizzaNumber * 10;
+  var taxes = subTotal *.1;
+  var total = subTotal + taxes;
+
+  $("#subTotal").text(subTotal);
+  $("#taxes").text(taxes);
+  $("#total").text(total);
+}
+
 function attachOrderListeners() {
   $("#buttonAddPizza").on("click", "#addPizza", function(){
     addPizza();
@@ -122,15 +132,16 @@ $(document).ready(function() {
     var deliveryAddress = $("input#deliveryAddress").val();
     var deliveryDateTime = $("input#deliveryDateTime").val();
 
+    calculateTotal();
+
     var orderDetails = [firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, newPizzas];
 
     var newOrder = new Order();
 
     newOrder.addOrder(orderDetails);
-console.log(newOrder);
 
-  $("#orderDetails").append(newOrder);
-  $("#myOrder").show();
+    $("#orderDetails").append(newOrder);
+    $("#myOrder").show();
 
   });
 

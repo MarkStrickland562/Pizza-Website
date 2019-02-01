@@ -29,21 +29,23 @@
       </div>
       <div class="row row-attributes bg-div">
         <div class="col-md-2">
-          <p>Pizza Number: <span id="pizzaNumber"></span></p>
+          <h5><strong>Pizza Number: </strong><span id="pizzaNumber"></span></h5>
         </div>
         <div class="col-md-4">
           <form id="pizzaToppings">
             <div class="form-group">
-              <p>Please select the toppings for your pizza:</p>
+              <h5><strong>Please select your toppings:</strong></h5>
               <input type="checkbox" name="pizza-topping" value="Extra Cheese"> Extra Cheese<br>
               <input type="checkbox" name="pizza-topping" value="Pepperoni"> Pepperoni<br>
               <input type="checkbox" name="pizza-topping" value="Mushrooms"> Mushrooms<br>
+              <input type="checkbox" name="pizza-topping" value="Sausage"> Sausage<br>
             </div>
             </form>
         </div>
         <div class="col-md-4">
           <form id="Size">
             <div class="form-group">
+              <h5><strong>Please select a size:</strong></h5>
               <div class="radio">
                 <label>
                   <input type="radio" name="pizzaSize" value="s">
@@ -89,12 +91,18 @@
             <input id="deliveryDateTime" type="text">
           </div>
       </div>
+      <div class="row row-attributes bg-div">
+          <h5><strong>Charges</strong></h5>
+          <p>Sub-Total: $<span id="subTotal"></span></p>
+          <p>Taxes: $<span id="taxes"></span></p>
+          <p>Total Cost: $<span id="total"></span></p>
+      </div>
       <div class="row button-row">
         <form id="submitOrder">
           <button type="submit" class="btn-submit">Add Order</button>
         </form>
       </div>
-      <div id="myOrder" class="row row-attributes">
+      <div id="myOrder" class="row row-attributes bg-div">
         <p>My Order: <span id="orderDetails"></span></p>
       </div>
       <div id="buttonStartOver" class="row button-row">
