@@ -1,12 +1,12 @@
 # _Markza Pizza Website_
 
-#### _Week #4 Independent Project 02/01/2019
+#### _Week #4 Independent Project 02/01/2019_
 
 #### By _**Mark Strickland**_
 
 ## Description
 
-_This is a website for ordering pizzas with an emphasis on using constructors and objects.
+_This is a website for ordering pizzas with an emphasis on using constructors and objects._
 
 ## Specifications
 
