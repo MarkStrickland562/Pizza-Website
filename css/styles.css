@@ -15,8 +15,8 @@
 }
 
 .jumbo-color {
-  background-color: bisque;
-  color: darkblue;
+  background-color: red;
+  color: black;
 }
 
 .pfont {
@@ -35,7 +35,7 @@
 }
 
 .col-noborder {
-  padding: 5px;
+  padding: 2px;
 }
 
 .btn-submit {
