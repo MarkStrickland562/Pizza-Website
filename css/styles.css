@@ -1,0 +1,55 @@
+.hcenter {
+  text-align: center;
+}
+
+.blinking {
+    animation:blinkingText 0.4s 3;
+}
+
+@keyframes blinkingText {
+    0%{     color: red;    }
+    49%{    color: transparent; }
+    50%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: black;    }
+}
+
+.jumbo-color {
+  background-color: bisque;
+  color: darkblue;
+}
+
+.pfont {
+  font-size: 8px;
+  font-family: cursive;
+}
+
+.row-attributes {
+  border: 2px solid;
+  padding: 4px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-top: : 4px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+
+.col-noborder {
+  padding: 5px;
+}
+
+.btn-submit {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border: 1px solid;
+  border-color: black;
+}
+
+#result-text {
+  display: none;
+}
+
+#showmeagain {
+  display: none;
+}
