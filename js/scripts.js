@@ -39,31 +39,25 @@ function Pizza(size, toppings) {
 
 // User Interface Logic ---------
 
-// function validateInput(firstName, lastName, phoneNumber, pizzaToppings, pizzaSize) {
-// console.log(firstName);
-//
-//   if (!firstName) {
-//     alert("First Name is Missing!");
-//     return false;
-//   }
-//   else if (!lastName) {
-//     alert("Last Name is Missing!");
-//     return false;
-//   }
-//   else if (!phoneNumber) {
-//     alert("Phone Number is Missing!");
-//     return false;
-//   }
-//   else if (!pizzaToppings) {
-//     alert("No Pizza Toppings were Selected!");
-//     return false;
-//   }
-//   else if (!pizzaSize) {
-//     alert("No Pizza Size was Selected!");
-//     return false;
-//   }
-//   return true;
-// }
+function validateInput(firstName, lastName, phoneNumber, pizzaCount) {
+  if (!firstName) {
+    alert("First Name is Missing!");
+    return false;
+  }
+  else if (!lastName) {
+    alert("Last Name is Missing!");
+    return false;
+  }
+  else if (!phoneNumber) {
+    alert("Phone Number is Missing!");
+    return false;
+  }
+  else if (pizzaCount === 0) {
+    alert("No Pizzas were Added!");
+    return false;
+  }
+  return true;
+}
 
 function addToppings() {
   var pizzaToppings = [];
@@ -87,11 +81,16 @@ function addSize() {
 function addPizza() {
   var pizzaToppings = addToppings();
   var pizzaSize = addSize();
-  var newPizza = new Pizza(pizzaSize, pizzaToppings);
-  newPizzas.addPizza(newPizza);
-  pizzaNumber = pizzaNumber + 1;
-  $("#pizzaNumber").text(pizzaNumber.toString());
 
+  if (pizzaToppings && pizzaSize) {
+    var newPizza = new Pizza(pizzaSize, pizzaToppings);
+    newPizzas.addPizza(newPizza);
+    pizzaNumber = pizzaNumber + 1;
+    $("#pizzaNumber").text(pizzaNumber.toString());
+  }
+  else {
+    alert("Please select toppings and a size for your pizza!")
+  }
 }
 
 function calculateTotal() {
@@ -111,20 +110,26 @@ function previewOrder() {
   var deliveryAddress = $("input#deliveryAddress").val();
   var deliveryDateTime = $("input#deliveryDateTime").val();
 
-  calculateTotal();
+  if (validateInput(firstName, lastName, phoneNumber, newPizzas.pizzas.length)) {
 
-  $("#fullName").text(firstName + " " + lastName);
-  $("#orderPhone").text(phoneNumber);
-  $("#orderAddress").text(deliveryAddress);
+    calculateTotal();
+
+    $("#fullName").text(firstName + " " + lastName);
+    $("#orderPhone").text(phoneNumber);
+    $("#orderAddress").text(deliveryAddress);
+
+    var pizzaList = "";
+
+    newPizzas.pizzas.forEach(function(pizza) {
+      pizzaList = pizzaList + "One " + pizza.size + " Pizza with " + pizza.toppings + "<br>";
+    });
+    $("#pizzas").append(pizzaList)
 
 
-  newPizzas.pizzas.forEach(function(pizza) {
-     $("ul#pizzas").append("<ol>One " + pizza.size + " Pizza with " + pizza.toppings + "</ol>");
-  });
-
-  $("#yourOrder").show();
-  $("#buttonPreviewOrder").hide();
-  $("form#submitOrder").show();
+    $("#yourOrder").show();
+    $("#buttonPreviewOrder").hide();
+    $("form#submitOrder").show();
+  }
 }
 
 function attachOrderListeners() {

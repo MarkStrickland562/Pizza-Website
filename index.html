@@ -9,22 +9,30 @@
   </head>
   <body>
     <div class="container">
-      <div class="jumbotron jumbo-color well row-attributes">
-          <h1 class="hcenter">Markza Pizza!</h1>
-          <h2 class="hcenter"><em><span style="font-family: cursive">Seattle's Best Pizza</span></em></h2>
+      <div class="row row-attributes bg-div">
+        <div class="col-md-3">
+          <img src="images/pizza.jpg"</img>
+        </div>
+        <div class="col-md-6">
+          <h1 class="banner">Markza Pizza</h1>
+          <h3 class="banner">Seattle's Best Pizza!</h3>
+        </div>
+        <div class="col-md-3">
+          <img src="images/pizza.jpg"</img>
+        </div>
       </div>
       <div class="row row-attributes bg-div">
         <div class="col-md-4">
           <label for="firstName">First Name:</label>
-          <input id="firstName" type="text" value="Mark">
+          <input id="firstName" type="text">
         </div>
         <div class="col-md-4">
           <label for="lastName">Last Name:</label>
-          <input id="lastName" type="text" value="Strickland">
+          <input id="lastName" type="text">
         </div>
         <div class="col-md-4">
           <label for="phoneNumber">Phone:</label>
-          <input id="phoneNumber" type="text" value="206-769-4978">
+          <input id="phoneNumber" type="text">
         </div>
       </div>
       <div class="row row-attributes bg-div">
@@ -92,19 +100,34 @@
           </div>
       </div>
       <div class="row row-attributes bg-div">
+        <div class="col-md-2">
           <h5><strong>Charges</strong></h5>
-          <p>Sub-Total: $<span id="subTotal"></span></p>
-          <p>Taxes: $<span id="taxes"></span></p>
-          <p>Total Cost: $<span id="total"></span></p>
+          <p class="p-right">Sub-Total:</p>
+          <p class="p-right">Taxes:</p>
+          <p class="p-right">Total Cost:</p>
+        </div>
+        <div class="col-md-10">
+          <h5><strong>Amount</strong></h5>
+          <p>$<span id="subTotal"></span></p>
+          <p>$<span id="taxes"></span></p>
+          <p>$<span id="total"></span></p>
+        </div>
       </div>
       <div id="yourOrder" class="row row-attributes bg-div">
+        <div class="col-md-2">
           <h5><strong>Your Order</strong></h5>
-          <p>Name: <span id="fullName"></span></p>
-          <p>Phone: <span id="orderPhone"></span></p>
-          <p>Delivery Address: <span id="orderAddress"></span><br></p>
-          <p>Pizzas:</p>
-          <ul id="pizzas">
-          </ul>
+          <p class="p-right">Name:</p>
+          <p class="p-right">Phone:</p>
+          <p class="p-right">Delivery Address:<br></p>
+          <p class="p-right">Pizzas:</p>
+        </div>
+        <div class="col-md-10">
+          <h5><br></h5>
+          <p><em><span id="fullName"></span></p>
+          <p><em><span id="orderAddress"></span><br></p>
+          <p><em><span id="orderPhone"></span></p>
+          <p><em><span id="pizzas"></span></p>
+        </div>
       </div>
       <div id="buttonPreviewOrder" class="row button-row">
         <button type="button" id="previewOrder" class="btn-red">Preview Order</button>
