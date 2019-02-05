@@ -37,12 +37,16 @@
   padding: 2px;
 }
 
-.btn-submit {
-  background-color: blue;
-  color: white;
+.btn-red {
+  background-color: red;
+  color: black;
   font-weight: bold;
   border: 1px solid;
   border-color: black;
+}
+
+#submitOrder {
+  display: none;
 }
 
 #pizzaNumber {
@@ -51,6 +55,6 @@
   background-color: white;
 }
 
-#myOrder {
+#yourOrder {
   display: none;
 }

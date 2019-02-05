@@ -95,7 +95,7 @@ function addPizza() {
 }
 
 function calculateTotal() {
-  var subTotal = pizzaNumber * 10;
+  var subTotal = (pizzaNumber - 1) * 10;
   var taxes = subTotal *.1;
   var total = subTotal + taxes;
 
@@ -104,12 +104,37 @@ function calculateTotal() {
   $("#total").text(total);
 }
 
+function previewOrder() {
+  var firstName = $("input#firstName").val();
+  var lastName = $("input#lastName").val();
+  var phoneNumber = $("input#phoneNumber").val();
+  var deliveryAddress = $("input#deliveryAddress").val();
+  var deliveryDateTime = $("input#deliveryDateTime").val();
+
+  calculateTotal();
+
+  $("#fullName").text(firstName + " " + lastName);
+  $("#orderPhone").text(phoneNumber);
+  $("#orderAddress").text(deliveryAddress);
+
+
+  newPizzas.pizzas.forEach(function(pizza) {
+     $("ul#pizzas").append("<ol>One " + pizza.size + " Pizza with " + pizza.toppings + "</ol>");
+  });
+
+  $("#yourOrder").show();
+  $("#buttonPreviewOrder").hide();
+  $("form#submitOrder").show();
+}
+
 function attachOrderListeners() {
   $("#buttonAddPizza").on("click", "#addPizza", function(){
     addPizza();
    });
-
-   $("#buttonStartOver").on("click", "#startOver", function(){
+  $("#buttonPreviewOrder").on("click", "#previewOrder", function(){
+     previewOrder();
+    });
+  $("#buttonStartOver").on("click", "#startOver", function(){
        location.reload();
    });
 
@@ -126,23 +151,13 @@ $(document).ready(function() {
   $("form#submitOrder").submit(function(event) {
     event.preventDefault();
 
-    var firstName = $("input#firstName").val();
-    var lastName = $("input#lastName").val();
-    var phoneNumber = $("input#phoneNumber").val();
-    var deliveryAddress = $("input#deliveryAddress").val();
-    var deliveryDateTime = $("input#deliveryDateTime").val();
-
-    calculateTotal();
-
     var orderDetails = [firstName, lastName, phoneNumber, deliveryAddress, deliveryDateTime, newPizzas];
 
     var newOrder = new Order();
 
     newOrder.addOrder(orderDetails);
 
-    $("#orderDetails").append(newOrder);
-    $("#myOrder").show();
-
+    alert("Thank you for your order!")
   });
 
 });

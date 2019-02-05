@@ -16,15 +16,15 @@
       <div class="row row-attributes bg-div">
         <div class="col-md-4">
           <label for="firstName">First Name:</label>
-          <input id="firstName" type="text">
+          <input id="firstName" type="text" value="Mark">
         </div>
         <div class="col-md-4">
           <label for="lastName">Last Name:</label>
-          <input id="lastName" type="text">
+          <input id="lastName" type="text" value="Strickland">
         </div>
         <div class="col-md-4">
           <label for="phoneNumber">Phone:</label>
-          <input id="phoneNumber" type="text">
+          <input id="phoneNumber" type="text" value="206-769-4978">
         </div>
       </div>
       <div class="row row-attributes bg-div">
@@ -48,25 +48,25 @@
               <h5><strong>Please select a size:</strong></h5>
               <div class="radio">
                 <label>
-                  <input type="radio" name="pizzaSize" value="s">
+                  <input type="radio" name="pizzaSize" value="Small">
                   Small (8")
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="pizzaSize" value="m">
+                  <input type="radio" name="pizzaSize" value="Medium">
                   Medium (12")
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="pizzaSize" value="l">
+                  <input type="radio" name="pizzaSize" value="Large">
                   Large (16")
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="pizzaSize" value="x">
+                  <input type="radio" name="pizzaSize" value="X-Large">
                   X-Large (20")
                 </label>
               </div>
@@ -76,7 +76,7 @@
         <div class="col-md-2">
           <div id="buttonAddPizza" class="button-centered">
             <p><br><br></>
-            <button type="button" id="addPizza" class="btn-primary">Add Pizza to Your Order</button>
+            <button type="button" id="addPizza" class="btn-red">Add Pizza to Your Order</button>
           </div>
         </div>
       </div>
@@ -84,11 +84,11 @@
           <h5><strong>Delivery? (Optional)</strong></h5>
           <div class="col-md-6">
             <label for="deliveryAddress">Delivery Address:</label>
-            <input id="deliveryAddress" type="text">
+            <input id="deliveryAddress" type="text" value="511 East Roy Street">
           </div>
           <div class="col-md-6">
             <label for="deliveryDateTime">Delivery Date/Time:</label>
-            <input id="deliveryDateTime" type="text">
+            <input id="deliveryDateTime" type="text" value="Now">
           </div>
       </div>
       <div class="row row-attributes bg-div">
@@ -97,16 +97,25 @@
           <p>Taxes: $<span id="taxes"></span></p>
           <p>Total Cost: $<span id="total"></span></p>
       </div>
+      <div id="yourOrder" class="row row-attributes bg-div">
+          <h5><strong>Your Order</strong></h5>
+          <p>Name: <span id="fullName"></span></p>
+          <p>Phone: <span id="orderPhone"></span></p>
+          <p>Delivery Address: <span id="orderAddress"></span><br></p>
+          <p>Pizzas:</p>
+          <ul id="pizzas">
+          </ul>
+      </div>
+      <div id="buttonPreviewOrder" class="row button-row">
+        <button type="button" id="previewOrder" class="btn-red">Preview Order</button>
+      </div>
       <div class="row button-row">
         <form id="submitOrder">
-          <button type="submit" class="btn-submit">Add Order</button>
+          <button type="submit" class="btn-red">Place Order</button>
         </form>
       </div>
-      <div id="myOrder" class="row row-attributes bg-div">
-        <p>My Order: <span id="orderDetails"></span></p>
-      </div>
       <div id="buttonStartOver" class="row button-row">
-         <button type="button" id="startOver" class="btn-primary">Start Over</button>
+         <button type="button" id="startOver" class="btn-red">Start Over</button>
       </div>
     </div>
   </body>
